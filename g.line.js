@@ -136,17 +136,20 @@
             var sym = Raphael.is(symbol, "array") ? symbol[i] : symbol,
                 symset = paper.set();
 
-            path = [];
+            var path = [],
+                pathcolorchange = false;
 
             for (var j = 0, jj = valuesy[i].length; j < jj; j++) {
                 var X = x + gutter + ((valuesx[i] || valuesx[0])[j] - minx) * kx,
                     Y = y + height - gutter - (valuesy[i][j] - miny) * ky;
 
                 if (opts.rangecolors) {
-                  for (rangeMinimum in opts.rangecolors) {
-                    if (valuesy[i][j] > rangeMinimum)
-                      fillcolor = opts.rangecolors[rangeMinimum];
-                  }
+                    for (rangeMinimum in opts.rangecolors) {
+                      if (valuesy[i][j] > rangeMinimum && fillcolor != opts.rangecolors[rangeMinimum]) {
+                        fillcolor = opts.rangecolors[rangeMinimum];
+                        pathcolorchange = true;
+                      }
+                    }
                 }
 
                 (Raphael.is(sym, "array") ? sym[j] : sym) && symset.push(paper[Raphael.is(sym, "array") ? sym[j] : sym](X, Y, (opts.width || 2) * 3).attr({ fill: fillcolor, stroke: "none" }));
@@ -167,6 +170,24 @@
                     }
                 } else {
                     path = path.concat([j ? "L" : "M", X, Y]);
+                }
+
+                if (pathcolorchange) {
+                    // The line has changed color due to us changing range.
+                    // We need to restart the path to start a new color from
+                    // this point forward.
+                    newpathy = path[path.length-1]
+                    newpathx = path[path.length-2]
+                    line.attr({ path: path.join(",") });
+                    path = ['M', newpathx, newpathy];
+                    lines.push(line = paper.path().attr({
+                        stroke: fillcolor,
+                        "stroke-width": opts.width || 2,
+                        "stroke-linejoin": "round",
+                        "stroke-linecap": "round",
+                        "stroke-dasharray": opts.dash || ""
+                    }));
+                    pathcolorchange = false;
                 }
             }
 
