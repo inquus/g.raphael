@@ -237,6 +237,7 @@
                 C.symbols = paper.set();
                 C.y = [];
                 C.x = xs[i];
+                C.pos = i;
                 C.axis = Xs[i];
 
                 for (var j = 0, jj = valuesy.length; j < jj; j++) {
@@ -270,6 +271,7 @@
                     f ? (C = {}) : cvrs.push(C = paper.circle(X, Y, Math.abs(nearX - X) / 2).attr({ stroke: "none", fill: "#000", opacity: 0 }));
                     C.x = X;
                     C.y = Y;
+                    C.pos = j;
                     C.value = valuesy[i][j];
                     C.line = chart.lines[i];
                     C.shade = chart.shades[i];
