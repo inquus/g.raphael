@@ -789,13 +789,13 @@ Raphael.g = {
         return { from: f, to: t, power: i };
     },
 
-    axis: function (x, y, length, from, to, steps, orientation, labels, type, dashsize, paper, opts) {
-        var opts = opts || {}
-
+    axis: function (x, y, length, from, to, steps, orientation, labels, type, dashsize, opts, paper) {
         dashsize = dashsize == null ? 2 : dashsize;
         type = type || "t";
         steps = steps || 10;
         paper = arguments[arguments.length-1] //paper is always last argument
+        opts = (opts == undefined && typeof arguments[arguments.length-2] == "object") ? arguments[arguments.length-2] : opts;
+        opts = opts || {};
 
         var path = type == "|" || type == " " ? ["M", x + .5, y, "l", 0, .001] : orientation == 1 || orientation == 3 ? ["M", x + .5, y, "l", 0, -length] : ["M", x, y + .5, "l", length, 0],
             ends = this.snapEnds(from, to, steps),
