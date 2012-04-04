@@ -121,9 +121,11 @@
             line;
 
         for (i = 0, ii = valuesy.length; i < ii; i++) {
+            var fillcolor = colors[i];
+
             if (!opts.nostroke) {
                 lines.push(line = paper.path().attr({
-                    stroke: colors[i],
+                    stroke: fillcolor,
                     "stroke-width": opts.width || 2,
                     "stroke-linejoin": "round",
                     "stroke-linecap": "round",
@@ -140,7 +142,14 @@
                 var X = x + gutter + ((valuesx[i] || valuesx[0])[j] - minx) * kx,
                     Y = y + height - gutter - (valuesy[i][j] - miny) * ky;
 
-                (Raphael.is(sym, "array") ? sym[j] : sym) && symset.push(paper[Raphael.is(sym, "array") ? sym[j] : sym](X, Y, (opts.width || 2) * 3).attr({ fill: colors[i], stroke: "none" }));
+                if (opts.rangecolors) {
+                  for (rangeMinimum in opts.rangecolors) {
+                    if (valuesy[i][j] > rangeMinimum)
+                      fillcolor = opts.rangecolors[rangeMinimum];
+                  }
+                }
+
+                (Raphael.is(sym, "array") ? sym[j] : sym) && symset.push(paper[Raphael.is(sym, "array") ? sym[j] : sym](X, Y, (opts.width || 2) * 3).attr({ fill: fillcolor, stroke: "none" }));
 
                 if (opts.smooth) {
                     if (j && j != jj - 1) {
