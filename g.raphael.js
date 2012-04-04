@@ -855,10 +855,10 @@ Raphael.g = {
                     } else {
                         prev = bb.x + bb.width;
                     }
-
-                    label += d;
-                    X += dx;
                 }
+
+                label += d;
+                X += dx;
             }
 
             if (Math.round(X - dx - x - length)) {
