@@ -112,10 +112,10 @@
 
         if (opts.grid) {
             if (opts.grid.vertical)
-                chartinst.grid(x+gutter, y+height-gutter, height, width, axisystep, 1, opts.grid.verticalcolor, paper);
+                chartinst.grid(x+gutter, y+height-gutter, height - 2*gutter, width - 2*gutter, axisystep, 1, opts.grid.verticalcolor, paper);
 
             if (opts.grid.horizontal)
-                chartinst.grid(x+gutter, y-gutter, width, height, axisxstep, 0, opts.grid.horizontalcolor, paper);
+                chartinst.grid(x+gutter, y+gutter, width - 2*gutter, height - 2*gutter, axisxstep, 0, opts.grid.horizontalcolor, paper);
         }
 
         if (opts.axis) {

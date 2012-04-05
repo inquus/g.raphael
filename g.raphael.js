@@ -792,7 +792,7 @@ Raphael.g = {
     grid: function(x, y, length, linelength, steps, orientation, color, paper) {
         steps = steps || 10;
 
-        var path = orientation == 1 || orientation == 3 ? ["M", x + .5, y, "l", 0, -length] : ["M", x, y + .5, "l", length, 0],
+        var path = [],
             dx = length / steps,
             color = color || "#000000";
 
