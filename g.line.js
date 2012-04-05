@@ -106,7 +106,8 @@
             miny = ydim.from,
             maxy = ydim.to,
             kx = (width - gutter * 2) / ((maxx - minx) || 1),
-            ky = (height - gutter * 2) / ((maxy - miny) || 1);
+            ky = (height - gutter * 2) / ((maxy - miny) || 1),
+            symbolwidth = (opts.width || 2) * 3;
 
         var axis = paper.set();
 
@@ -165,7 +166,7 @@
                 if (Raphael.is(sym, "array") && sym[j] || ! Raphael.is(sym, "array") && sym) {
                     var symbol = Raphael.is(sym, "array") ? sym[j] : sym;
 
-                    symset.push(paper[symbol](X, Y, (opts.width || 2) * 3).attr({ fill: fillcolor, stroke: "none" }));
+                    symset.push(paper[symbol](X, Y, symbolwidth).attr({ fill: fillcolor, stroke: "none" }));
                 }
 
                 if (opts.smooth) {
