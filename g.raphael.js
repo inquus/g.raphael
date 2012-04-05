@@ -807,7 +807,6 @@ Raphael.g = {
             var Y = y;
 
             while (Y >= y - length) {
-                console.log(x + " " + Y);
                 path = path.concat(["M", x, Y + .5, "l", linelength, 0]);
                 Y -= dx;
             }
