@@ -811,7 +811,12 @@ Raphael.g = {
                 Y -= dx;
             }
         } else {
-            // TODO: Vertical grid.
+            var X = x;
+
+            while (X <= x + length) {
+                path = path.concat(["M", X + .5, y, "l", 0, linelength]);
+                X += dx;
+            }
         }
 
         return paper.path(path);
