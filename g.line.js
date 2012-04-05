@@ -162,7 +162,11 @@
                     }
                 }
 
-                (Raphael.is(sym, "array") ? sym[j] : sym) && symset.push(paper[Raphael.is(sym, "array") ? sym[j] : sym](X, Y, (opts.width || 2) * 3).attr({ fill: fillcolor, stroke: "none" }));
+                if (Raphael.is(sym, "array") && sym[j] || ! Raphael.is(sym, "array") && sym) {
+                    var symbol = Raphael.is(sym, "array") ? sym[j] : sym;
+
+                    symset.push(paper[symbol](X, Y, (opts.width || 2) * 3).attr({ fill: fillcolor, stroke: "none" }));
+                }
 
                 if (opts.smooth) {
                     if (j && j != jj - 1) {
