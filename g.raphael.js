@@ -789,6 +789,35 @@ Raphael.g = {
         return { from: f, to: t, power: i };
     },
 
+    grid: function(x, y, length, linelength, from, to, steps, orientation, paper) {
+        steps = steps || 10;
+
+        var path = orientation == 1 || orientation == 3 ? ["M", x + .5, y, "l", 0, -length] : ["M", x, y + .5, "l", length, 0],
+            ends = this.snapEnds(from, to, steps),
+            f = ends.from,
+            t = ends.to,
+            i = ends.power,
+            j = 0,
+            txtattr = { font: "11px 'Fontin Sans', Fontin-Sans, sans-serif" },
+            text = paper.set(),
+            d = (t - f) / steps,
+            dx = length / steps;
+
+        if (+orientation == 1 || +orientation == 3) {
+            var Y = y;
+
+            while (Y >= y - length) {
+                console.log(x + " " + Y);
+                path = path.concat(["M", x, Y + .5, "l", linelength, 0]);
+                Y -= dx;
+            }
+        } else {
+            // TODO: Vertical grid.
+        }
+
+        return paper.path(path);
+    },
+
     axis: function (x, y, length, from, to, steps, orientation, labels, type, dashsize, opts, paper) {
         dashsize = dashsize == null ? 2 : dashsize;
         type = type || "t";
