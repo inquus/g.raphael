@@ -828,6 +828,8 @@ Raphael.g = {
         opts = opts || {};
 
         var path = type == "|" || type == " " ? ["M", x + .5, y, "l", 0, .001] : orientation == 1 || orientation == 3 ? ["M", x + .5, y, "l", 0, -length] : ["M", x, y + .5, "l", length, 0],
+            path = (opts.noverticalline && (orientation == 1 || orientation == 3)) ? [] : path,
+            path = (opts.nohorizontalline && (orientation == 0 || orientation == 2)) ? [] : path,
             ends = this.snapEnds(from, to, steps),
             f = ends.from,
             t = ends.to,
