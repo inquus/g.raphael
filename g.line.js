@@ -120,10 +120,10 @@
 
         if (opts.grid) {
             if (opts.grid.horizontal)
-                chartinst.grid(x+gutter, y+height-gutter, height, width, miny, maxy, axisystep, 1, paper);
+                chartinst.grid(x+gutter, y+height-gutter, height, width, axisystep, 1, paper);
 
             if (opts.grid.vertical)
-                chartinst.grid(x+gutter, y-gutter, width, height, minx, maxx, axisxstep, 0, paper);
+                chartinst.grid(x+gutter, y-gutter, width, height, axisxstep, 0, paper);
         }
 
         var lines = paper.set(),
