@@ -789,11 +789,16 @@ Raphael.g = {
         return { from: f, to: t, power: i };
     },
 
-    grid: function(x, y, length, linelength, steps, orientation, paper) {
+    grid: function(x, y, length, linelength, steps, orientation, color, paper) {
         steps = steps || 10;
 
         var path = orientation == 1 || orientation == 3 ? ["M", x + .5, y, "l", 0, -length] : ["M", x, y + .5, "l", length, 0],
-            dx = length / steps;
+            dx = length / steps,
+            color = color || "#000000";
+
+        paper.set().push(line = paper.path().attr({
+            stroke: color
+        }));
 
         if (+orientation == 1 || +orientation == 3) {
             var Y = y;
@@ -811,7 +816,7 @@ Raphael.g = {
             }
         }
 
-        return paper.path(path);
+        line.attr({ path: path.join(",") });
     },
 
     axis: function (x, y, length, from, to, steps, orientation, labels, type, dashsize, opts, paper) {
