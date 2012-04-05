@@ -835,7 +835,7 @@ Raphael.g = {
             t = ends.to,
             i = ends.power,
             j = 0,
-            txtattr = { font: "11px 'Fontin Sans', Fontin-Sans, sans-serif" },
+            txtattr = { font: "11px 'Fontin Sans', Fontin-Sans, sans-serif", 'fill': (opts.labelcolor) ? opts.labelcolor : '#000000'},
             text = paper.set(),
             d = (t - f) / steps,
             horizontalLabels = (opts.horizontalLabels == undefined) ? true : opts.horizontalLabels,
