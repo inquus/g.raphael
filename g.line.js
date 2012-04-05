@@ -116,6 +116,14 @@
             +ax[3] && axis.push(chartinst.axis(x + gutter, y + height - gutter, height - 2 * gutter, miny, maxy, opts.axisystep || Math.floor((height - 2 * gutter) / 20), 1, opts.axisopts, paper));
         }
 
+        if (opts.grid) {
+            if (opts.grid.horizontal)
+                chartinst.grid(x+gutter, y+height-gutter, height, width, miny, maxy, opts.axisystep || Math.floor((height - 2 * gutter) / 20), 1, paper);
+
+            if (opts.grid.vertical)
+                chartinst.grid(x+gutter, y-gutter, width, height, minx, maxx, opts.axisxstep || Math.floor((width - 2 * gutter) / 20), 0, paper);
+        }
+
         var lines = paper.set(),
             symbols = paper.set(),
             line;
