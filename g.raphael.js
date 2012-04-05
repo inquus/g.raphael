@@ -805,13 +805,11 @@ Raphael.g = {
             j = 0,
             txtattr = { font: "11px 'Fontin Sans', Fontin-Sans, sans-serif" },
             text = paper.set(),
-            d,
+            d = (t - f) / steps,
             horizontalLabels = (opts.horizontalLabels == undefined) ? true : opts.horizontalLabels,
             horizontalNotches = (opts.horizontalNotches == undefined) ? true : opts.horizontalNotches,
             verticalLabels = (opts.verticalLabels == undefined) ? true : opts.verticalLabels,
             verticalNotches = (opts.verticalNotches == undefined) ? true : opts.verticalNotches;
-
-        d = (t - f) / steps;
 
         var label = f,
             rnd = i > 0 ? i : 0;
