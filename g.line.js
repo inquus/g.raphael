@@ -72,7 +72,9 @@
             columns = null,
             dots = null,
             chart = paper.set(),
-            path = [];
+            path = [],
+            axisxstep = opts.axisxstep || Math.floor((width - 2 * gutter) / 20),
+            axisystep = opts.axisystep || Math.floor((height - 2 * gutter) / 20);
 
         for (var i = 0, ii = valuesy.length; i < ii; i++) {
             len = Math.max(len, valuesy[i].length);
@@ -110,18 +112,18 @@
 
         if (opts.axis) {
             var ax = (opts.axis + "").split(/[,\s]+/);
-            +ax[0] && axis.push(chartinst.axis(x + gutter, y + gutter, width - 2 * gutter, minx, maxx, opts.axisxstep || Math.floor((width - 2 * gutter) / 20), 2, opts.axisopts, paper));
-            +ax[1] && axis.push(chartinst.axis(x + width - gutter, y + height - gutter, height - 2 * gutter, miny, maxy, opts.axisystep || Math.floor((height - 2 * gutter) / 20), 3, opts.axisopts, paper));
-            +ax[2] && axis.push(chartinst.axis(x + gutter, y + height - gutter, width - 2 * gutter, minx, maxx, opts.axisxstep || Math.floor((width - 2 * gutter) / 20), 0, opts.axisopts, paper));
-            +ax[3] && axis.push(chartinst.axis(x + gutter, y + height - gutter, height - 2 * gutter, miny, maxy, opts.axisystep || Math.floor((height - 2 * gutter) / 20), 1, opts.axisopts, paper));
+            +ax[0] && axis.push(chartinst.axis(x + gutter, y + gutter, width - 2 * gutter, minx, maxx, axisxstep, 2, opts.axisopts, paper));
+            +ax[1] && axis.push(chartinst.axis(x + width - gutter, y + height - gutter, height - 2 * gutter, miny, maxy, axisystep, 3, opts.axisopts, paper));
+            +ax[2] && axis.push(chartinst.axis(x + gutter, y + height - gutter, width - 2 * gutter, minx, maxx, axisxstep, 0, opts.axisopts, paper));
+            +ax[3] && axis.push(chartinst.axis(x + gutter, y + height - gutter, height - 2 * gutter, miny, maxy, axisystep, 1, opts.axisopts, paper));
         }
 
         if (opts.grid) {
             if (opts.grid.horizontal)
-                chartinst.grid(x+gutter, y+height-gutter, height, width, miny, maxy, opts.axisystep || Math.floor((height - 2 * gutter) / 20), 1, paper);
+                chartinst.grid(x+gutter, y+height-gutter, height, width, miny, maxy, axisystep, 1, paper);
 
             if (opts.grid.vertical)
-                chartinst.grid(x+gutter, y-gutter, width, height, minx, maxx, opts.axisxstep || Math.floor((width - 2 * gutter) / 20), 0, paper);
+                chartinst.grid(x+gutter, y-gutter, width, height, minx, maxx, axisxstep, 0, paper);
         }
 
         var lines = paper.set(),
