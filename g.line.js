@@ -111,11 +111,11 @@
         var axis = paper.set();
 
         if (opts.grid) {
-            if (opts.grid.horizontal)
-                chartinst.grid(x+gutter, y+height-gutter, height, width, axisystep, 1, opts.grid.horizontalcolor, paper);
-
             if (opts.grid.vertical)
-                chartinst.grid(x+gutter, y-gutter, width, height, axisxstep, 0, opts.grid.verticalcolor, paper);
+                chartinst.grid(x+gutter, y+height-gutter, height, width, axisystep, 1, opts.grid.verticalcolor, paper);
+
+            if (opts.grid.horizontal)
+                chartinst.grid(x+gutter, y-gutter, width, height, axisxstep, 0, opts.grid.horizontalcolor, paper);
         }
 
         if (opts.axis) {
